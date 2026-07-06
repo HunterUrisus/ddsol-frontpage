@@ -1,0 +1,61 @@
+---
+interface Props {
+	active?: string;
+}
+
+const { active = "start" } = Astro.props;
+
+const links = [
+	{ id: "start", label: "Inicio", href: "#start"},
+	{ id: "about", label: "Nosotros", href: "#about" },
+	// { id: "project", label: "Project", href: "#project" },
+	// { id: "service", label: "Service", href: "#service" },
+	// { id: "client", label: "Client", href: "#client" },
+	// { id: "team", label: "Team", href: "#team" },
+	// { id: "blog", label: "Blog", href: "#blog" },
+	{ id: "contact", label: "Contacto", href: "#contact" },
+] as const;
+---
+
+<nav class="fixed top-10 left-1/2 -translate-x-1/2 z-50 flex items-center justify-between w-[calc(100%-3rem)] max-w-6xl px-8 py-4 bg-white border border-black/5 rounded-xl shadow-md">
+	<a href="/" class="font-outfit font-bold text-2xl text-slate-900 no-underline whitespace-nowrap tracking-tight">
+		DosD Solutions
+	</a>
+	<ul class="flex items-center gap-6 list-none m-0 p-0">
+		{links.map((link) => (
+			<li>
+				<a
+					href={link.href}
+					class:list={[
+						"font-outfit font-medium text-[0.95rem] text-slate-500 no-underline transition-colors duration-200 hover:text-indigo-600",
+						{ "text-indigo-600": active === link.id },
+					]}
+					data-nav-id={link.id}
+				>
+					{link.label}
+				</a>
+			</li>
+		))}
+	</ul>
+	<div>
+		<svg class="w-6 h-6 text-slate-700 cursor-pointer hover:text-indigo-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+		</svg>
+	</div>
+</nav>
+
+<script>
+	const navLinks = document.querySelectorAll("[data-nav-id]");
+
+	navLinks.forEach((link) => {
+		link.addEventListener("click", (e) => {
+			e.preventDefault();
+			navLinks.forEach((l) => {
+				l.classList.remove("text-indigo-600");
+				l.classList.add("text-slate-500");
+			});
+			link.classList.remove("text-slate-500");
+			link.classList.add("text-indigo-600");
+		});
+	});
+</script>

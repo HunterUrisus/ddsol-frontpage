@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Intro font — commercial typeface by DisplayFonts.
+ * Place the font file (e.g. Intro.woff2) in /public/fonts/
+ * and uncomment the @font-face below to enable it.
+ * Falls back to system sans-serif until then.
+ */
+/*
+@font-face {
+	font-family: "Intro";
+	src: url("/fonts/Intro.woff2") format("woff2");
+	font-weight: 400 700;
+	font-display: swap;
+}
+*/
